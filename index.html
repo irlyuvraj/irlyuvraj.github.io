@@ -224,6 +224,72 @@
   .metric .num { font-size: 15px; font-weight: 500; color: var(--ink); display: block; }
   .metric .lbl { font-size: 10.5px; color: var(--ink-faint); }
 
+  /* ---- contributions list ---- */
+  .contrib-list { list-style: none; margin: 2px 0 16px 0; columns: 2; column-gap: 24px; }
+  .contrib-list li {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    padding-left: 15px;
+    position: relative;
+    margin-bottom: 7px;
+    break-inside: avoid;
+  }
+  .contrib-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+  /* ---- results table ---- */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-panel); }
+  .results-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .results-table th, .results-table td { text-align: left; padding: 13px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .results-table tr:last-child td { border-bottom: none; }
+  .results-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    background: var(--bg);
+  }
+  .results-table td:first-child {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+    width: 1%;
+  }
+  .results-table td:last-child { color: var(--ink-soft); }
+
+  /* ---- engineering highlights ---- */
+  .eng-grid { display: grid; gap: 14px; }
+  .eng-highlight {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    background: var(--bg-panel);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+  }
+  .eng-highlight .h-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .eng-highlight p { font-size: 14px; color: var(--ink-soft); }
+
+  /* ---- limitations ---- */
+  .limit-box {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 20px 22px;
+    border-radius: var(--radius);
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+  .limit-box b { color: var(--ink); font-weight: 600; }
+  .limit-box p + p { margin-top: 12px; }
+
   /* ---- about ---- */
   .about-text { max-width: 64ch; font-size: 15.5px; color: var(--ink-soft); }
   .about-text p { margin-bottom: 14px; }
@@ -257,6 +323,7 @@
   @media (max-width: 600px) {
     .nav-links { gap: 16px; font-size: 12.5px; }
     .metrics-row { gap: 18px; }
+    .contrib-list { columns: 1; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -271,6 +338,7 @@
     <div class="nav-name display">Yuvraj Singh</div>
     <nav class="nav-links">
       <a href="#projects">Projects</a>
+      <a href="#results">Results</a>
       <a href="#about">About</a>
       <a href="https://github.com/irlyuvraj" target="_blank">GitHub</a>
       <a href="mailto:ml.yuvrajsingh@gmail.com">Contact</a>
@@ -318,6 +386,14 @@
       <div class="metric"><span class="num">~0%</span><span class="lbl">PARSE FAILURE (POST-FIX)</span></div>
       <div class="metric"><span class="num">2</span><span class="lbl">EMBODIMENTS</span></div>
     </div>
+    <ul class="contrib-list">
+      <li>Designed the full system architecture (brain / policy router / robot bridge)</li>
+      <li>Built the real-time multimodal inference pipeline</li>
+      <li>Collected teleoperation demonstration data on both robots</li>
+      <li>Fine-tuned GR00T independently on both embodiments</li>
+      <li>Built the hardware abstraction layer and G1 robot bridge</li>
+      <li>Diagnosed and fixed the vLLM inference bug</li>
+    </ul>
     <div class="tag-row">
       <span class="tag">Qwen3-Omni</span>
       <span class="tag">NVIDIA GR00T</span>
@@ -340,6 +416,8 @@
     <p class="project-desc">
       Independently fine-tuned NVIDIA GR00T on two robot embodiments using self-collected
       teleoperation data &mdash; a SO-101 single arm and a Unitree G1 dual-arm humanoid.
+      SO-101 (N1.6): 300 episodes / 58,853 frames. G1 (N1.7): 104 episodes / 18,190 frames,
+      final loss 0.008.
     </p>
     <div class="tag-row">
       <span class="tag">GR00T N1.6 / N1.7</span>
@@ -350,22 +428,70 @@
       <a href="https://huggingface.co/tysyuvraj" target="_blank">Hugging Face</a>
     </div>
   </div>
+</section>
 
-  <div class="project-card">
-    <div class="project-head">
-      <div class="project-title display">Image-to-Image Synthesis using CycleGANs</div>
-      <div class="project-status mono">PUBLISHED · ICINC-2021</div>
+<section class="section wrap" id="results">
+  <div class="section-label mono">// key_results</div>
+  <div class="section-title display">Key Results</div>
+  <div class="table-scroll">
+    <table class="results-table">
+      <thead>
+        <tr><th>Metric</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Inference latency</td>
+          <td>462ms median / 617ms p95 across 5,561 logged predictions</td>
+        </tr>
+        <tr>
+          <td>Reliability fix</td>
+          <td>Diagnosed a ~50% parse-failure rate to a known vLLM/Qwen3 issue; workaround reduced failures to ~0%</td>
+        </tr>
+        <tr>
+          <td>Cross-embodiment generalization</td>
+          <td>Identical architecture ported unmodified across SO-101 and Unitree G1 via a fixed 10-method contract</td>
+        </tr>
+        <tr>
+          <td>GR00T fine-tuning</td>
+          <td>SO-101 (N1.6): 300 episodes / 58,853 frames &nbsp;|&nbsp; G1 (N1.7): 104 episodes / 18,190 frames, final loss 0.008</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section wrap" id="engineering">
+  <div class="section-label mono">// engineering_highlights</div>
+  <div class="section-title display">Engineering Highlights</div>
+  <div class="eng-grid">
+    <div class="eng-highlight">
+      <div class="h-label display">Unified multimodal perception</div>
+      <p>One model (Qwen3-Omni, via vLLM) handles video and audio jointly, replacing what would
+        otherwise be separate VAD, ASR, and vision-encoder components.</p>
     </div>
-    <p class="project-desc">
-      Co-authored research on unpaired image-to-image translation, peer-reviewed and
-      accepted at the 6th International Conference on IoT, Next Generation Networks and
-      Cloud Computing.
-    </p>
-    <div class="tag-row">
-      <span class="tag">GANs</span>
-      <span class="tag">TensorFlow</span>
-      <span class="tag">Computer Vision</span>
+    <div class="eng-highlight">
+      <div class="h-label display">Diagnosing a production inference bug</div>
+      <p>Traced a ~50% output parse-failure rate to a known vLLM/Qwen3 compatibility issue and
+        validated a fix across the full deployment.</p>
     </div>
+    <div class="eng-highlight">
+      <div class="h-label display">Model-behavior-driven design</div>
+      <p>The model is unreliable at structured fields but reliable at focused yes/no questions
+        &mdash; this shaped both the visual grounding gate and the completion verifier.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="limitations">
+  <div class="section-label mono">// known_limitations</div>
+  <div class="section-title display">Known Limitations</div>
+  <div class="limit-box">
+    <p><b>Open-vocabulary understanding, but closed-vocabulary execution</b> &mdash; the robot
+      only performs its trained skills, and adding one requires new demonstration data.</p>
+    <p>The model is reliable at focused yes/no visual checks but weak at fine-grained grounding
+      (e.g., color naming), which the perception design works around rather than solves.</p>
+    <p>The anticipatory speech path trades selectivity for speed: it can fragment compound
+      commands and needs confirmation gates that add back some latency.</p>
   </div>
 </section>
 
@@ -389,6 +515,13 @@
     <p>
       Outside of research, I'm continuing to study Japanese, and I occasionally run
       informal STEM workshops for children.
+    </p>
+    <p>
+      <b>Why this approach:</b> most interruption systems either require continuous
+      teleoperation or hard-coded voice commands. Here, the robot acts autonomously by
+      default, and a general-purpose model &mdash; used entirely through prompting, no
+      fine-tuning on the perception side &mdash; supervises it well enough to intervene at
+      the right moment.
     </p>
   </div>
 </section>

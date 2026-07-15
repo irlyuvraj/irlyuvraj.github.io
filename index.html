@@ -316,7 +316,14 @@
   .facts .f .v { font-size: 14px; color: var(--ink); margin-top: 2px; }
 
   /* figure band */
-  .figband { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); justify-content: center; gap: 18px; }
+  .figband { display: grid; grid-template-columns: repeat(2, minmax(0, 400px)); justify-content: center; gap: 18px; }
+
+  /* research-contribution callout */
+  .callout { border: 1px solid var(--line); border-left: 3px solid var(--accent); background: var(--accent-wash); border-radius: var(--radius); padding: 24px 28px; }
+  .callout p { font-size: 15.5px; color: var(--ink-soft); }
+  .callout p + p { margin-top: 12px; }
+  .callout b { color: var(--ink); font-weight: 600; }
+  .mini + .mini { margin-top: 16px; }
   .lab-fig { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); box-shadow: var(--shadow); }
   .lab-fig img { display: block; width: 100%; height: 460px; object-fit: cover; object-position: center; }
   .lab-fig figcaption { padding: 14px 20px; font-size: 13.5px; color: var(--ink-soft); border-top: 1px solid var(--line); }
@@ -535,6 +542,28 @@
   </div>
 </section>
 
+<!-- research contribution -->
+<section class="block wrap">
+  <div class="sec-head">
+    <span class="eyebrow mono">Why it's novel</span>
+    <h2 class="display">Research Contribution</h2>
+  </div>
+  <div class="callout">
+    <p>
+      The contribution is in the <b>composition</b>. A general-purpose multimodal model is used
+      <b>zero-shot</b> — with no perception-side training — as an external supervisor over an
+      <b>independently trained, unmodified</b> robot policy. The two are never jointly trained; the
+      brain reasons, the policy acts, and a thin software contract couples them.
+    </p>
+    <p>
+      Instead of a binary stop/go, the supervisor performs <b>graded intervention</b> — hedging
+      (slowing the robot) on an ambiguous cue before committing to a stop — and the same supervisor
+      was validated across <b>two structurally different robots and three separately trained
+      policies</b> without changing a line of its code.
+    </p>
+  </div>
+</section>
+
 <!-- results -->
 <section class="block wrap" id="results">
   <div class="sec-head">
@@ -617,6 +646,21 @@
       <span class="datachip">Hugging Face · <b>models + datasets</b></span>
     </div>
   </div>
+  <div class="mini">
+    <span class="st mono">OPEN SOURCE</span>
+    <h3 class="display">Evaluation &amp; Analysis Tooling</h3>
+    <p>
+      Built the offline analysis suite that turns raw session logs into evidence — so every claim on
+      this page traces back to data. It measures the anticipation lead time, replays logged
+      predictions through the router to sweep decision thresholds counterfactually, and reports
+      tail-latency and parse-failure rates across both robots.
+    </p>
+    <div class="datachips">
+      <span class="datachip"><b>Anticipation</b> lead-time metric</span>
+      <span class="datachip"><b>Counterfactual</b> router replay</span>
+      <span class="datachip"><b>Tail-latency</b> + reliability report</span>
+    </div>
+  </div>
 </section>
 
 <!-- limitations -->
@@ -660,13 +704,22 @@
         (ICINC 2021). Outside research, I'm continuing to study Japanese and occasionally run informal
         STEM workshops for children.
       </p>
+      <p>
+        I'm most interested in work at the seam between large multimodal models and real robots —
+        perception, real-time inference, and the control logic that turns a model's output into safe,
+        useful action. I'm looking for <b>research or robotics-ML roles</b> where I can keep building
+        systems that run on real hardware, not just benchmarks.
+      </p>
     </div>
     <div class="about-side">
     <div class="about-photo"><img src="headshot.jpg" alt="Portrait of Yuvraj Singh" loading="lazy" width="681" height="1000"></div>
     <div class="facts">
       <div class="f"><div class="k mono">Location</div><div class="v">Toyonaka, Osaka · Japan</div></div>
+      <div class="f"><div class="k mono">Education</div><div class="v">Master's · The University of Osaka · 2026</div></div>
       <div class="f"><div class="k mono">Focus</div><div class="v">Multimodal AI · Robot learning · HRI</div></div>
-      <div class="f"><div class="k mono">Stack</div><div class="v">Python · vLLM · GR00T · LeRobot · PyTorch</div></div>
+      <div class="f"><div class="k mono">Stack</div><div class="v">Python · PyTorch · vLLM · GR00T · LeRobot</div></div>
+      <div class="f"><div class="k mono">Languages</div><div class="v">English · Japanese (studying)</div></div>
+      <div class="f"><div class="k mono">Publications</div><div class="v">ICINC 2021 — CycleGANs</div></div>
       <div class="f"><div class="k mono">Available</div><div class="v">From September 2026</div></div>
     </div>
     </div>

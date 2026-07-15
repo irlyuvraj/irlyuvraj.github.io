@@ -318,14 +318,14 @@
   /* figure band */
   .figband { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .lab-fig { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); box-shadow: var(--shadow); }
-  .lab-fig img { display: block; width: 100%; height: 400px; object-fit: cover; object-position: center; }
+  .lab-fig img { display: block; width: 100%; height: auto; }
   .lab-fig figcaption { padding: 14px 20px; font-size: 13.5px; color: var(--ink-soft); border-top: 1px solid var(--line); }
   .lab-fig figcaption b { color: var(--ink); font-weight: 600; font-family: 'Archivo', sans-serif; }
 
   /* about photo rail */
   .about-side { align-self: start; }
   .about-photo { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 16px; }
-  .about-photo img { display: block; width: 100%; height: 320px; object-fit: cover; object-position: center 22%; }
+  .about-photo img { display: block; width: 100%; height: auto; }
 
   /* footer */
   footer { border-top: 1px solid var(--line); padding: 46px 0 56px; background: var(--panel-2); }
@@ -346,7 +346,6 @@
     .pipe-grid { grid-template-columns: 1fr; }
     .eng-grid { grid-template-columns: 1fr; }
     .figband { grid-template-columns: 1fr; }
-    .lab-fig img { height: 340px; }
     .pipe-card .arrow { display: none; }
     .proj-metrics { grid-template-columns: repeat(2, 1fr); }
     .proj-metrics .m:nth-child(2) { border-right: none; }

@@ -315,6 +315,18 @@
   .facts .f .k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
   .facts .f .v { font-size: 14px; color: var(--ink); margin-top: 2px; }
 
+  /* figure band */
+  .figband { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .lab-fig { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); box-shadow: var(--shadow); }
+  .lab-fig img { display: block; width: 100%; height: 400px; object-fit: cover; object-position: center; }
+  .lab-fig figcaption { padding: 14px 20px; font-size: 13.5px; color: var(--ink-soft); border-top: 1px solid var(--line); }
+  .lab-fig figcaption b { color: var(--ink); font-weight: 600; font-family: 'Archivo', sans-serif; }
+
+  /* about photo rail */
+  .about-side { align-self: start; }
+  .about-photo { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 16px; }
+  .about-photo img { display: block; width: 100%; height: 320px; object-fit: cover; object-position: center 22%; }
+
   /* footer */
   footer { border-top: 1px solid var(--line); padding: 46px 0 56px; background: var(--panel-2); }
   .foot-grid { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 28px; }
@@ -333,6 +345,8 @@
   @media (max-width: 720px) {
     .pipe-grid { grid-template-columns: 1fr; }
     .eng-grid { grid-template-columns: 1fr; }
+    .figband { grid-template-columns: 1fr; }
+    .lab-fig img { height: 340px; }
     .pipe-card .arrow { display: none; }
     .proj-metrics { grid-template-columns: repeat(2, 1fr); }
     .proj-metrics .m:nth-child(2) { border-right: none; }
@@ -447,6 +461,25 @@
       <h3 class="display">Stop · switch · continue</h3>
       <p>A software policy router — not the model — decides when to interrupt, redirect, or let the running GR00T policy finish.</p>
     </div>
+  </div>
+</section>
+
+<!-- system in action -->
+<section class="block wrap">
+  <div class="sec-head">
+    <span class="eyebrow mono">Real hardware</span>
+    <h2 class="display">The System in Action</h2>
+    <p>Not a simulation demo — the supervisor and both policies were built and tested on physical robots.</p>
+  </div>
+  <div class="figband">
+    <figure class="lab-fig">
+      <img src="teleop.jpg" alt="Yuvraj teleoperating the Unitree G1 humanoid to collect demonstrations" loading="lazy" width="843" height="1500">
+      <figcaption><b>Unitree G1 — teleoperation.</b> Collecting dual-arm demonstrations for GR00T fine-tuning.</figcaption>
+    </figure>
+    <figure class="lab-fig">
+      <img src="so-101.jpg" alt="The SO-101 follower arm set up for the cotton-ball pick-and-place task" loading="lazy" width="1050" height="1400">
+      <figcaption><b>SO-101 arm.</b> The pink/yellow cotton-ball pick-and-place workspace.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -597,6 +630,8 @@
     <p><b>Open-vocabulary understanding, closed-vocabulary execution.</b> The robot only performs its trained skills; adding one requires new demonstration data.</p>
     <p>The model is reliable at focused yes/no visual checks but weak at fine-grained grounding such as color naming — the perception design works around this rather than solving it.</p>
     <p>The anticipatory speech path trades selectivity for speed: it can fragment compound commands and needs confirmation gates that add back some latency.</p>
+    <p><b>Server-hosted, not on-device.</b> The supervisor runs a 30B multimodal model on a separate GPU server, so latency depends on the network link and it is not an embedded solution — a deliberate trade of deployment footprint for zero-shot generality with no perception-side training.</p>
+    <p><b>Bounded by the policy it watches.</b> The monitor reliably detects when a task stalls or fails, but it cannot repair a weak motor policy — an under-trained skill is correctly reported as incomplete rather than fixed. Overall task success still depends on the underlying policy's competence.</p>
   </div>
 </section>
 
@@ -627,11 +662,14 @@
         STEM workshops for children.
       </p>
     </div>
+    <div class="about-side">
+    <div class="about-photo"><img src="headshot.jpg" alt="Portrait of Yuvraj Singh" loading="lazy" width="681" height="1000"></div>
     <div class="facts">
       <div class="f"><div class="k mono">Location</div><div class="v">Toyonaka, Osaka · Japan</div></div>
       <div class="f"><div class="k mono">Focus</div><div class="v">Multimodal AI · Robot learning · HRI</div></div>
       <div class="f"><div class="k mono">Stack</div><div class="v">Python · vLLM · GR00T · LeRobot · PyTorch</div></div>
       <div class="f"><div class="k mono">Available</div><div class="v">From September 2026</div></div>
+    </div>
     </div>
   </div>
 </section>

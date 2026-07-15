@@ -330,9 +330,10 @@
   .lab-fig figcaption b { color: var(--ink); font-weight: 600; font-family: 'Archivo', sans-serif; }
 
   /* about photo rail */
-  .about-side { align-self: start; }
-  .about-photo { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 16px; }
-  .about-photo img { display: block; width: 100%; height: 460px; object-fit: cover; object-position: center 30%; }
+  .about-side { display: flex; flex-direction: column; }
+  .about-photo { flex: 1 1 auto; min-height: 260px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 16px; }
+  .about-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+  .about-side .facts { flex: 0 0 auto; align-self: stretch; }
 
   /* footer */
   footer { border-top: 1px solid var(--line); padding: 46px 0 56px; background: var(--panel-2); }
@@ -718,9 +719,6 @@
       <div class="f"><div class="k mono">Education</div><div class="v">Master's · The University of Osaka · 2026</div></div>
       <div class="f"><div class="k mono">Focus</div><div class="v">Multimodal AI · Robot learning · HRI</div></div>
       <div class="f"><div class="k mono">Stack</div><div class="v">Python · PyTorch · vLLM · GR00T · LeRobot</div></div>
-      <div class="f"><div class="k mono">Languages</div><div class="v">English · Japanese (studying)</div></div>
-      <div class="f"><div class="k mono">Publications</div><div class="v">ICINC 2021 — CycleGANs</div></div>
-      <div class="f"><div class="k mono">Available</div><div class="v">From September 2026</div></div>
     </div>
     </div>
   </div>

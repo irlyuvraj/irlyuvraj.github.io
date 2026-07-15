@@ -316,16 +316,16 @@
   .facts .f .v { font-size: 14px; color: var(--ink); margin-top: 2px; }
 
   /* figure band */
-  .figband { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .figband { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); justify-content: center; gap: 18px; }
   .lab-fig { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--panel); box-shadow: var(--shadow); }
-  .lab-fig img { display: block; width: 100%; height: auto; }
+  .lab-fig img { display: block; width: 100%; height: 460px; object-fit: cover; object-position: center; }
   .lab-fig figcaption { padding: 14px 20px; font-size: 13.5px; color: var(--ink-soft); border-top: 1px solid var(--line); }
   .lab-fig figcaption b { color: var(--ink); font-weight: 600; font-family: 'Archivo', sans-serif; }
 
   /* about photo rail */
   .about-side { align-self: start; }
   .about-photo { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 16px; }
-  .about-photo img { display: block; width: 100%; height: auto; }
+  .about-photo img { display: block; width: 100%; height: 460px; object-fit: cover; object-position: center 30%; }
 
   /* footer */
   footer { border-top: 1px solid var(--line); padding: 46px 0 56px; background: var(--panel-2); }
